@@ -19,12 +19,14 @@ nc09_precincts18 <- combined2018 %>%
 
 #pull grand totals by candidate
 nc09_precincts18 %>% 
+  filter(!candidate_name %in% c("OVER VOTE", "UNDER VOTE")) %>% 
   group_by(candidate_name, candidate_party_lbl) %>% 
   summarise(cnt = n(), sum(group_vote_ct_adj))
 
 #pull grand totals by candidate
 nc09_grpby_county <- nc09_precincts18 %>% 
-  filter(county_desc %in% c("UNION",
+  filter(!candidate_name %in% c("OVER VOTE", "UNDER VOTE"),
+         county_desc %in% c("UNION",
                               "MECKLENBURG",
                                "ANSON",
                                "RICHMOND",
@@ -37,4 +39,6 @@ nc09_grpby_county <- nc09_precincts18 %>%
   group_by(county_desc, candidate_name, candidate_party_lbl) %>% 
   summarise(cnt = n(), sum(group_vote_ct_adj))
 
+#save output file
 write_csv(nc09_grpby_county, "output/nc09_grpby_county.csv")
+write_csv(nc09_precincts18, "output/nc09_precincts18.csv")
