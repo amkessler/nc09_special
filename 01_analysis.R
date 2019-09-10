@@ -39,8 +39,8 @@ nc09_grouped_precincts <- nc09_precincts18 %>%
   summarise(cnt = n(), num_votes = sum(group_vote_ct_adj))
 
 #save results to files
-write_csv(nc09_grouped_precincts, "processed_data/nc09_grouped_precincts.csv")
-saveRDS(nc09_grouped_precincts, "processed_data/nc09_grouped_precincts.rds")
+write_csv(nc09_grouped_precincts, "processed_data/nc09_2018_grouped_precincts.csv")
+saveRDS(nc09_grouped_precincts, "processed_data/nc09_2018_grouped_precincts.rds")
 
 
 
