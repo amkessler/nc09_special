@@ -24,7 +24,7 @@ nc09_precincts18 %>%
   summarise(cnt = n(), sum(group_vote_ct_adj))
 
 #pull grand totals by candidate
-nc09_grpby_county <- nc09_precincts18 %>% 
+nc09_grouped_precincts <- nc09_precincts18 %>% 
   filter(!candidate_name %in% c("OVER VOTE", "UNDER VOTE"),
          county_desc %in% c("UNION",
                               "MECKLENBURG",
@@ -35,12 +35,13 @@ nc09_grpby_county <- nc09_precincts18 %>%
                                "BLADEN",
                                "CUMBERLAND")
          ) %>% 
-  group_by(county_desc, candidate_name, candidate_party_lbl) %>% 
-  summarise(cnt = n(), sum(group_vote_ct_adj))
+  group_by(county_desc, precinct_code, precinct_name, candidate_name, candidate_party_lbl) %>% 
+  summarise(cnt = n(), num_votes = sum(group_vote_ct_adj))
 
-#save output file
-write_csv(nc09_grpby_county, "output/nc09_grpby_county.csv")
-write_csv(nc09_precincts18, "output/nc09_precincts18.csv")
+#save results to files
+write_csv(nc09_grouped_precincts, "processed_data/nc09_grouped_precincts.csv")
+saveRDS(nc09_grouped_precincts, "processed_data/nc09_grouped_precincts.rds")
+
 
 
 

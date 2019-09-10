@@ -45,3 +45,7 @@ nc2016_prez <- nc2016_prez %>%
 #save result
 saveRDS(nc2016_prez, "processed_data/nc2016_prez.rds")
 
+
+
+#load 2018 results
+nc2018 <- read_tsv("raw_data/results_pct_20181106.txt")
