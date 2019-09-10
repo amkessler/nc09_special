@@ -33,8 +33,7 @@ nc09_grpby_county <- nc09_precincts18 %>%
                                "SCOTLAD",
                                "ROBESON",
                                "BLADEN",
-                               "CUMBERLAND",
-                               "HOKE")
+                               "CUMBERLAND")
          ) %>% 
   group_by(county_desc, candidate_name, candidate_party_lbl) %>% 
   summarise(cnt = n(), sum(group_vote_ct_adj))
@@ -50,7 +49,16 @@ write_csv(nc09_precincts18, "output/nc09_precincts18.csv")
 #load saved version from step 00
 nc2016_prez <- readRDS("processed_data/nc2016_prez.rds")
 
-
+#filter to NC-09 counties only
+nc09_prez16 <- nc2016_prez %>% 
+  filter(county%in% c("UNION",
+                                     "MECKLENBURG",
+                                     "ANSON",
+                                     "RICHMOND",
+                                     "SCOTLAD",
+                                     "ROBESON",
+                                     "BLADEN",
+                                     "CUMBERLAND"))
 
 
 
