@@ -38,6 +38,9 @@ nc09_grouped_precincts <- nc09_precincts18 %>%
   group_by(county_desc, precinct_code, precinct_name, candidate_name, candidate_party_lbl) %>% 
   summarise(cnt = n(), num_votes = sum(group_vote_ct_adj))
 
+nc09_grouped_precincts
+
+
 #save results to files
 write_csv(nc09_grouped_precincts, "processed_data/nc09_2018_grouped_precincts.csv")
 saveRDS(nc09_grouped_precincts, "processed_data/nc09_2018_grouped_precincts.rds")
@@ -61,5 +64,6 @@ nc09_prez16 <- nc2016_prez %>%
                                      "BLADEN",
                                      "CUMBERLAND"))
 
+nc09_prez16
 
 
