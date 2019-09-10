@@ -25,3 +25,23 @@ combined2018 <- csv_files %>%
 
 #save result
 saveRDS(combined2018, "processed_data/combined2018_precincts.rds")
+
+
+
+#load 2016 results #####
+nc2016 <- read_tsv("raw_data/precinct_sort_statewide_at_large_contests_no_admin_precincts_20161108.txt")
+
+nc2016 <- nc2016 %>% 
+  clean_names()
+
+#filter just for presidential race
+nc2016_prez <- nc2016 %>% 
+  filter(contest_name == "US PRESIDENT")
+
+#remove NAs (under- and over-vote records)
+nc2016_prez <- nc2016_prez %>% 
+  filter(!is.na(choice_party))
+
+#save result
+saveRDS(nc2016_prez, "processed_data/nc2016_prez.rds")
+

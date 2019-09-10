@@ -42,3 +42,15 @@ nc09_grpby_county <- nc09_precincts18 %>%
 #save output file
 write_csv(nc09_grpby_county, "output/nc09_grpby_county.csv")
 write_csv(nc09_precincts18, "output/nc09_precincts18.csv")
+
+
+
+#### 2016 PRESIDENTIAL ####
+
+#load saved version from step 00
+nc2016_prez <- readRDS("processed_data/nc2016_prez.rds")
+
+
+
+
+
