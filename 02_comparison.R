@@ -71,3 +71,4 @@ prez_2016 <- prez_2016 %>%
     gop16pct = round_half_up((gop16/total16)*100, 1),
     margin16 = abs(dem16pct - gop16pct)
   )
+

@@ -6,6 +6,8 @@ anson <- st_read("geo_data/anson.kml")
 
 plot(anson[1])
 
+anson
+
 
 union <- st_read("geo_data/union.kml")
 
