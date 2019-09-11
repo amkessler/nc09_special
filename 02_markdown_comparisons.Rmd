@@ -20,6 +20,10 @@ options(scipen = 999)
 
 joined <- readRDS("processed_data/joined.rds")
 
+robeson <- joined %>% 
+  filter(county == "ROBESON")
+
+
 
 
 ```
@@ -104,7 +108,7 @@ joined %>%
 ```
 
 
-Where did Democratic pct fall
+Where did Democratic percent of the vote fall from Nov
 ```{r echo=FALSE}
 
 joined %>% 
@@ -118,7 +122,7 @@ joined %>%
 
 ```
 
-Where did Republican pct fall
+Where did Republican percent of the vote fall from Nov
 ```{r echo=FALSE}
 
 joined %>% 
@@ -136,11 +140,74 @@ joined %>%
 
 
 
+### Vote-Spread Metrics
+
+
+Where did Democrats *lose* the most in the vote number difference compared with Nov?
+It's all about Robeson County.
+```{r echo=FALSE}
+
+joined %>% 
+  select(county, precinct, votespread_18_dem, votespread_19_dem, votespread_GAINdiff_dem) %>% 
+  arrange(votespread_GAINdiff_dem) %>% 
+  filter(votespread_19_dem < 0) %>% 
+  head(10) %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "condensed"), 
+                full_width = F,
+                position = "left") %>% 
+  column_spec(5, bold = T)
+
+```
 
 
 
+In areas where Democrats gained votes from Nov, where did they *gain* the most in vote number spread?
+```{r echo=FALSE}
+
+joined %>% 
+  select(county, precinct, votespread_18_dem, votespread_19_dem, votespread_GAINdiff_dem) %>% 
+  arrange(desc(votespread_GAINdiff_dem)) %>% 
+  filter(votespread_19_dem > 0) %>% 
+  head(10) %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "condensed"), 
+                full_width = F,
+                position = "left") %>% 
+  column_spec(5, bold = T)
+
+```
 
 
 
+## Diving into Robeson County
 
+
+### asdfasdf
+
+Robeson County flips were entirely Republican
+```{r echo=FALSE}
+
+robeson %>% 
+  filter(flip == "Y") %>% 
+  count(flip, winner19) %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "condensed"), 
+                full_width = F,
+                position = "left")
+
+```
+
+
+Democrats lost vote share in nearly every Robeson precinct compared with 2018 
+```{r echo=FALSE}
+
+robeson %>% 
+  count(dem_updown) %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "condensed"), 
+                full_width = F,
+                position = "left")
+
+```
 
