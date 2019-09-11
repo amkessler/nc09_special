@@ -30,7 +30,10 @@ midterm_2018 <- midterm_2018 %>%
   )
 
 #calculate total and percentages for each candidate
-midterm_2018 %>% 
+midterm_2018 <- midterm_2018 %>% 
   mutate(
-    
+    total18 = (dem18 + lib18 + gop18),
+    dem18pct = round_half_up((dem18/total18)*100, 1),
+    gop18pct = round_half_up((gop18/total18)*100, 1),
+    margin18 = abs(dem18pct - gop18pct)
   )
