@@ -2,6 +2,7 @@ library(tidyverse)
 library(janitor)
 library(lubridate)
 library(reshape2)
+library(writexl)
 options(scipen = 999)
 
 #load 2018 results from step 00
@@ -86,7 +87,7 @@ saveRDS(special_2019, "processed_data/special_2019.rds")
 
 
 
-### Join together and compare #### ----------------------------------
+### JOIN TOGETHER AND COMPARE #### ----------------------------------
 
 joined_allcols <- inner_join(midterm_2018, special_2019)
 
@@ -117,4 +118,19 @@ joined <- joined %>%
     gop_change = gop19pct - gop18pct,
     margin_tot_change = round_half_up(margin19 - margin18, 1)
   )
-  
+
+#save to file
+saveRDS(joined, "processed_data/joined.rds")
+write_xlsx(joined, "processed_data/joined.xlsx")
+
+
+
+
+# ANALYSIS #### ----------------------------------------------
+
+joined
+
+
+
+
+
