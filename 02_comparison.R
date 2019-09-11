@@ -64,25 +64,30 @@ special_2019 <- special_2019 %>%
 #rename columns
 special_2019 <- special_2019 %>% 
   rename(
-    dem18 = DEM,
-    lib18 = LIB,
-    gop18 = REP,
-    gre18 = GRE
+    dem19 = DEM,
+    lib19 = LIB,
+    gop19 = REP,
+    gre19 = GRE
   )
 
 #calculate total and percentages for each candidate
 special_2019 <- special_2019 %>% 
   mutate(
-    total18 = (dem18 + lib18 + gop18 + gre18),
-    dem18pct = round_half_up((dem18/total18)*100, 1),
-    gop18pct = round_half_up((gop18/total18)*100, 1),
-    margin18 = abs(dem18pct - gop18pct)
+    total19 = (dem19 + lib19 + gop19 + gre19),
+    dem19pct = round_half_up((dem19/total19)*100, 1),
+    gop19pct = round_half_up((gop19/total19)*100, 1),
+    margin19 = abs(dem18pct - gop19pct)
   )
 
 #save result to file
 saveRDS(special_2019, "processed_data/special_2019.rds")
 
 
+
+
+### Join together and compare #### ----------------------------------
+
+joined <- inner_join(special_2019, midterm_2018)
 
 
 
