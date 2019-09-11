@@ -100,9 +100,13 @@ joined <- joined_allcols %>%
   select(
     county,
     precinct,
+    dem18,
+    gop18,
     dem18pct,
     gop18pct,
     margin18,
+    dem19,
+    gop19,
     dem19pct,
     gop19pct,
     margin19
@@ -115,12 +119,16 @@ joined <- joined %>%
     winner19 = if_else(dem19pct > gop19pct, "D", "R"),
     flip = if_else(winner18 == winner19, "N", "Y"),
     dem_change = dem19pct - dem18pct,
+    dem_vote_change = dem19 - dem18,
     dem_updown = if_else(dem_change < 0, "down", "up"),
     dem_updown = if_else(dem_change == 0, "none", dem_updown),
     gop_change = gop19pct - gop18pct,
+    gop_vote_change = gop19 - gop18,
     gop_updown = if_else(gop_change < 0, "down", "up"),
     gop_updown = if_else(gop_change == 0, "none", gop_updown),
-    margin_tot_change = round_half_up(margin19 - margin18, 1)
+    margin_tot_change = round_half_up(margin19 - margin18, 1),
+    vote_change_ratio_dem = round_half_up(dem_vote_change/gop_vote_change, 2),
+    vote_change_ratio_gop = round_half_up(gop_vote_change/dem_vote_change, 2)
   )
 
 #save to file
@@ -134,17 +142,48 @@ write_xlsx(joined, "processed_data/joined.xlsx")
 
 joined
 
+#flips
 joined %>% 
   count(flip)
 
 joined %>% 
   filter(flip == "Y") %>% 
+  count(flip, winner19, county)
+
+#up or down
+joined %>% 
+  count(dem_updown)
+
+joined %>% 
+  count(gop_updown)
+
+
+#which counties
+joined %>% 
+  count(county)
+
+
+
+# ROBESON 
+
+robeson <- joined %>% 
+  filter(county == "ROBESON")
+
+#flips
+robeson %>% 
+  count(flip)
+
+robeson %>% 
+  filter(flip == "Y") %>% 
   count(flip, winner19)
 
 
+#up or down
+robeson %>% 
+  count(dem_updown)
 
-
-
+robeson %>% 
+  count(gop_updown)
 
 
 
