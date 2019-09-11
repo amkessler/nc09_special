@@ -40,35 +40,46 @@ midterm_2018 <- midterm_2018 %>%
 
 
 
-# presidential from 2016 #### -------------------------
+#load 2019 special election results from step 00 #### -------------------------------------
 
-nc2016_prez <- readRDS("processed_data/nc2016_prez.rds")
+nc2019_house9 <- readRDS("processed_data/nc2019_house9.rds")
 
-names(nc2016_prez)
+#remove precincts not marked as real
+special_2019 <- nc2019_house9 %>% 
+  filter(real_precinct == "Y")
 
-prez_2016 <- nc2016_prez %>% 
+names(special_2019)
+
+special_2019 <- special_2019 %>% 
   select(county, precinct, choice_party, total_votes)
 
+
 #reshape to get candidate votes going across
-prez_2016 <- prez_2016 %>% 
+special_2019 <- special_2019 %>% 
   dcast(county + precinct ~ choice_party, value.var = "total_votes", sum) %>% 
   as_tibble()
 
 #rename columns
-prez_2016 <- prez_2016 %>% 
+special_2019 <- special_2019 %>% 
   rename(
-    dem16 = DEM,
-    lib16 = LIB,
-    gop16 = REP,
-    non16 = NON
+    dem18 = DEM,
+    lib18 = LIB,
+    gop18 = REP,
+    gre18 = GRE
   )
 
 #calculate total and percentages for each candidate
-prez_2016 <- prez_2016 %>% 
+special_2019 <- special_2019 %>% 
   mutate(
-    total16 = (dem16 + lib16 + gop16 + non16),
-    dem16pct = round_half_up((dem16/total16)*100, 1),
-    gop16pct = round_half_up((gop16/total16)*100, 1),
-    margin16 = abs(dem16pct - gop16pct)
+    total18 = (dem18 + lib18 + gop18 + gre18),
+    dem18pct = round_half_up((dem18/total18)*100, 1),
+    gop18pct = round_half_up((gop18/total18)*100, 1),
+    margin18 = abs(dem18pct - gop18pct)
   )
+
+
+
+
+
+
 
