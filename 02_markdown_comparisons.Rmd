@@ -1,0 +1,44 @@
+---
+title: "NC-09 precinct-level comparisons"
+author: "Aaron Kessler"
+date: "9/11/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(janitor)
+library(lubridate)
+library(reshape2)
+library(writexl)
+library(kableExtra)
+library(gt)
+options(scipen = 999)
+
+
+joined <- readRDS("processed_data/joined.rds")
+
+
+
+```
+
+
+## Breakdowns by Flips
+
+
+Total flipped precincts
+```{r echo=FALSE}
+
+#flips
+joined %>% 
+  count(flip) %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "condensed"), 
+                full_width = F,
+                position = "left")
+
+
+```
+
