@@ -3,6 +3,8 @@ library(janitor)
 library(lubridate)
 library(reshape2)
 library(writexl)
+library(kableExtra)
+library(gt)
 options(scipen = 999)
 
 #load 2018 results from step 00
@@ -153,7 +155,7 @@ joined
 
 #flips
 joined %>% 
-  count(flip)
+  count(flip) 
 
 joined %>% 
   filter(flip == "Y") %>% 
