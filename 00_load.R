@@ -27,7 +27,6 @@ combined2018 <- csv_files %>%
 saveRDS(combined2018, "processed_data/combined2018_precincts.rds")
 
 
-
 #load 2016 results #####
 nc2016 <- read_tsv("raw_data/precinct_sort_statewide_at_large_contests_no_admin_precincts_20161108.txt")
 
@@ -47,7 +46,7 @@ saveRDS(nc2016_prez, "processed_data/nc2016_prez.rds")
 
 
 
-### attempt to use full txt file for 2018 ####
+### use NC BOE full txt file for 2018 ####
 
 #load 2018 results
 nc2018 <- read_tsv("raw_data/results_pct_20181106.txt")
@@ -67,5 +66,22 @@ nc2018_house9 %>%
 
 nc2018_house9 %>% 
   count(county)
+
+
+# load 2019 special election results from BOE text file ####
+nc2019 <- read_tsv("raw_data/results_pct_20190910.txt")
+
+nc2019 <- nc2019 %>% 
+  clean_names()
+
+#filter for NC-09 only
+nc2019_house9 <- nc2019 %>% 
+  filter(contest_name == "US HOUSE OF REPRESENTATIVES DISTRICT 09")
+
+#save result
+saveRDS(nc2019_house9, "processed_data/nc2019_house9.rds")
+
+nc2019_house9 %>% 
+  count(choice_party)
 
 
