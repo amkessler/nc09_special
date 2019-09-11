@@ -131,6 +131,15 @@ joined <- joined %>%
     vote_change_ratio_gop = round_half_up(gop_vote_change/dem_vote_change, 2)
   )
 
+#calculate vote spread for dems against gop in each election, then compared
+joined <- joined %>% 
+   mutate(
+    votespread_18_dem = dem18-gop18,
+    votespread_19_dem = dem19-gop19,
+    votespread_GAINdiff_dem = votespread_19_dem - votespread_18_dem
+  )
+
+
 #save to file
 saveRDS(joined, "processed_data/joined.rds")
 write_xlsx(joined, "processed_data/joined.xlsx")
@@ -148,7 +157,12 @@ joined %>%
 
 joined %>% 
   filter(flip == "Y") %>% 
-  count(flip, winner19, county)
+  count(flip, winner19)
+
+joined %>% 
+  filter(flip == "Y") %>% 
+  count(flip, winner19, county) %>% 
+  arrange(winner19, desc(n))
 
 #up or down
 joined %>% 
