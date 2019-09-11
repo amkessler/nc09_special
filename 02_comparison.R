@@ -38,6 +38,8 @@ midterm_2018 <- midterm_2018 %>%
     margin18 = abs(dem18pct - gop18pct)
   )
 
+#save result to file
+saveRDS(midterm_2018, "processed_data/midterm_2018.rds")
 
 
 #load 2019 special election results from step 00 #### -------------------------------------
@@ -77,7 +79,8 @@ special_2019 <- special_2019 %>%
     margin18 = abs(dem18pct - gop18pct)
   )
 
-
+#save result to file
+saveRDS(special_2019, "processed_data/special_2019.rds")
 
 
 
