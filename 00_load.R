@@ -47,5 +47,25 @@ saveRDS(nc2016_prez, "processed_data/nc2016_prez.rds")
 
 
 
+### attempt to use full txt file for 2018 ####
+
 #load 2018 results
 nc2018 <- read_tsv("raw_data/results_pct_20181106.txt")
+
+nc2018 <- nc2018 %>% 
+  clean_names()
+
+#filter for NC-09 only
+nc2018_house9 <- nc2018 %>% 
+  filter(contest_name == "US HOUSE OF REPRESENTATIVES DISTRICT 09")
+
+#save result
+saveRDS(nc2018_house9, "processed_data/nc2018_house9.rds")
+
+nc2018_house9 %>% 
+  count(choice_party)
+
+nc2018_house9 %>% 
+  count(county)
+
+
