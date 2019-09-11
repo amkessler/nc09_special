@@ -1,0 +1,36 @@
+library(tidyverse)
+library(janitor)
+library(lubridate)
+library(reshape2)
+
+#load 2018 results from step 00
+nc2018_house9 <- readRDS("processed_data/nc2018_house9.rds")
+
+#remove precincts not marked as real
+midterm_2018 <- nc2018_house9 %>% 
+  filter(real_precinct == "Y")
+
+names(midterm_2018)
+
+midterm_2018 <- midterm_2018 %>% 
+  select(county, precinct, choice_party, total_votes)
+
+
+#reshape to get candidate votes going across
+midterm_2018 <- midterm_2018 %>% 
+  dcast(county + precinct ~ choice_party, value.var = "total_votes", sum) %>% 
+  as_tibble()
+
+#rename columns
+midterm_2018 <- midterm_2018 %>% 
+  rename(
+    dem18 = DEM,
+    lib18 = LIB,
+    gop18 = REP
+  )
+
+#calculate total and percentages for each candidate
+midterm_2018 %>% 
+  mutate(
+    
+  )
