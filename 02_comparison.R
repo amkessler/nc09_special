@@ -115,7 +115,11 @@ joined <- joined %>%
     winner19 = if_else(dem19pct > gop19pct, "D", "R"),
     flip = if_else(winner18 == winner19, "N", "Y"),
     dem_change = dem19pct - dem18pct,
+    dem_updown = if_else(dem_change < 0, "down", "up"),
+    dem_updown = if_else(dem_change == 0, "none", dem_updown),
     gop_change = gop19pct - gop18pct,
+    gop_updown = if_else(gop_change < 0, "down", "up"),
+    gop_updown = if_else(gop_change == 0, "none", gop_updown),
     margin_tot_change = round_half_up(margin19 - margin18, 1)
   )
 
@@ -129,6 +133,16 @@ write_xlsx(joined, "processed_data/joined.xlsx")
 # ANALYSIS #### ----------------------------------------------
 
 joined
+
+joined %>% 
+  count(flip)
+
+joined %>% 
+  filter(flip == "Y") %>% 
+  count(flip, winner19)
+
+
+
 
 
 
