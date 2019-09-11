@@ -25,13 +25,12 @@ joined <- readRDS("processed_data/joined.rds")
 ```
 
 
-## Breakdowns by Flips
+### Breakdowns by Flips
 
 
-Total flipped precincts
+Total flipped precincts on Tues night
 ```{r echo=FALSE}
 
-#flips
 joined %>% 
   count(flip) %>% 
   kable() %>% 
@@ -39,6 +38,109 @@ joined %>%
                 full_width = F,
                 position = "left")
 
+```
+
+
+Looking by party, Republicans owned the night for flips 
+```{r echo=FALSE}
+
+joined %>% 
+  filter(flip == "Y") %>% 
+  count(flip, winner19) %>% 
+  arrange(desc(n)) %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "condensed"), 
+                full_width = F,
+                position = "left")
 
 ```
+
+
+
+Which counties had most flips by party?
+Republicans flipped a huge chunk (15!) in **Robeson County**
+```{r echo=FALSE}
+
+joined %>% 
+  filter(flip == "Y") %>% 
+  count(flip, winner19, county) %>% 
+  arrange(desc(winner19), desc(n)) %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "condensed"), 
+                full_width = F,
+                position = "left")
+
+```
+
+
+
+### Did each party's pct of vote go up or down since Nov?
+
+Democratic
+```{r echo=FALSE}
+
+joined %>% 
+  count(dem_updown) %>% 
+  arrange(desc(n)) %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "condensed"), 
+                full_width = F,
+                position = "left")
+
+```
+
+
+Republican
+```{r echo=FALSE}
+
+joined %>% 
+  count(gop_updown) %>% 
+  arrange(desc(n)) %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "condensed"), 
+                full_width = F,
+                position = "left")
+
+```
+
+
+Where did Democratic pct fall
+```{r echo=FALSE}
+
+joined %>% 
+  count(dem_updown, county) %>% 
+  filter(dem_updown == "down") %>% 
+  arrange(desc(n)) %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "condensed"), 
+                full_width = F,
+                position = "left")
+
+```
+
+Where did Republican pct fall
+```{r echo=FALSE}
+
+joined %>% 
+  count(gop_updown, county) %>% 
+  filter(gop_updown == "down") %>% 
+  arrange(desc(n)) %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "condensed"), 
+                full_width = F,
+                position = "left")
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
 
