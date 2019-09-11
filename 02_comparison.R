@@ -172,10 +172,34 @@ joined %>%
   count(gop_updown)
 
 
+
+# vote-spread analysis
+joined %>% 
+  arrange(desc(votespread_GAINdiff_dem)) %>% 
+  View()
+
+
+# this one shows the poles of Robeson and Meckelburg ******
+joined %>% 
+  arrange(desc(votespread_GAINdiff_dem)) %>% 
+  filter(votespread_19_dem > 0) %>% 
+  View()
+
+#another view of Robeson at the pole
+joined %>% 
+  arrange(votespread_GAINdiff_dem) %>% 
+  filter(votespread_19_dem < 0) %>% 
+  View()
+
+
+
+
+
+
+
 #which counties
 joined %>% 
   count(county)
-
 
 
 # ROBESON 
