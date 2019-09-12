@@ -1,7 +1,7 @@
 ---
 title: "NC-09 precinct-level comparisons"
 author: "Aaron Kessler"
-date: "9/11/2019"
+date: "9/12/2019"
 output: html_document
 ---
 
@@ -28,11 +28,109 @@ robeson <- joined %>%
 
 ```
 
+### Let's start out with turnout: How many precincts saw more votes for each party in the special compared with the original midterms in November. How many saw less?
 
-### Breakdowns by Flips
+Democrats: Nearly every precinct saw votes *fall* from November
+```{r echo=FALSE}
+
+joined %>% 
+  count(dem_updown_votes) %>% 
+  arrange(desc(n)) %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "condensed"), 
+                full_width = F,
+                position = "left")
+
+```
 
 
-Total flipped precincts on Tues night
+The same was true for Republicans. 
+
+```{r echo=FALSE}
+
+joined %>% 
+  count(gop_updown_votes) %>% 
+  arrange(desc(n)) %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "condensed"), 
+                full_width = F,
+                position = "left")
+
+```
+
+So we know this was a low-turnout election broadly and people who came out in their precincts in November didn't show up this time.  
+  
+  
+
+### Now let's look at each party's **percent** of the vote in each precinct
+#### Did Tuesday's margins go up or down since Nov?
+
+Democratic
+```{r echo=FALSE}
+
+joined %>% 
+  count(dem_updown) %>% 
+  arrange(desc(n)) %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "condensed"), 
+                full_width = F,
+                position = "left")
+
+```
+
+
+Republican
+```{r echo=FALSE}
+
+joined %>% 
+  count(gop_updown) %>% 
+  arrange(desc(n)) %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "condensed"), 
+                full_width = F,
+                position = "left")
+
+```
+
+So we can see Republicans did significantly better. Even though turnout overall was lower, the Republican voters showed up more often at the precinct level, allowing the party to boost its margins this time.
+
+#### Where did Democratic percent of the vote fall from Nov?
+
+Let's see which counties had the largest number of precincts with lower Democratic margins this time compared with November's midterms
+```{r echo=FALSE}
+
+joined %>% 
+  count(dem_updown, county) %>% 
+  filter(dem_updown == "down") %>% 
+  arrange(desc(n)) %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "condensed"), 
+                full_width = F,
+                position = "left")
+
+```
+
+It's clear that Robeson County plays a key role in the Democratic struggles on Tues night. That much was known quite quickly, though let's dive in a little deeper now and see what the precincts tell us.
+
+<!-- Where did Republican percent of the vote fall from Nov -->
+<!-- ```{r echo=FALSE} -->
+
+<!-- joined %>%  -->
+<!--   count(gop_updown, county) %>%  -->
+<!--   filter(gop_updown == "down") %>%  -->
+<!--   arrange(desc(n)) %>%  -->
+<!--   kable() %>%  -->
+<!--   kable_styling(bootstrap_options = c("striped", "condensed"),  -->
+<!--                 full_width = F, -->
+<!--                 position = "left") -->
+
+<!-- ``` -->
+
+### Precincts that flipped parties on Tuesday
+
+#### Let's see if Robeson features prominently or not among precincts that flipped from blue to red, or vice versa.
+
+Total flipped precincts on Tues night show us there were 27 such precincts district-wide.
 ```{r echo=FALSE}
 
 joined %>% 
@@ -45,7 +143,7 @@ joined %>%
 ```
 
 
-Looking by party, Republicans owned the night for flips 
+Looking by party, it's clear Republicans owned the night for flips 
 ```{r echo=FALSE}
 
 joined %>% 
@@ -59,9 +157,11 @@ joined %>%
 
 ```
 
+So now we also know that Republicans were much more successful on Tuesday night in flipping precincts.  
+This matches up with our previous breakdowns above showing how Republicans gained greater shares of the vote in more precincts than Democrats.  
+Now we know they were *also better a flipping them altogether* and winning precincts Democrats had carried in November.  
 
-
-Which counties had most flips by party?
+#### So which *counties* had most flips by party?
 Republicans flipped a huge chunk (15!) in **Robeson County**
 ```{r echo=FALSE}
 
@@ -77,25 +177,10 @@ joined %>%
 ```
 
 
-
-### Diving into Robeson County
-
-Robeson County flips were entirely Republican
-```{r echo=FALSE}
-
-robeson %>% 
-  filter(flip == "Y") %>% 
-  count(flip, winner19) %>% 
-  kable() %>% 
-  kable_styling(bootstrap_options = c("striped", "condensed"), 
-                full_width = F,
-                position = "left")
-
-```
-
+#### Diving deeper into Robeson County: How the Dems lost ground and why it was so devastating for Tuesday's results
 
 Democrats lost vote share in nearly every Robeson precinct compared with 2018.
-The table below shows the number of precincts the Dem share went up or down.
+The table below shows the number of precincts the Dem share went up or down in *just Robeson*.
 ```{r echo=FALSE}
 
 robeson %>% 
@@ -108,21 +193,7 @@ robeson %>%
 ```
 
 
-The net loss in votes for Democrats from November was more than 4,000
-```{r echo=FALSE}
-
-robeson %>% 
-  summarise(sum(votespread_GAINdiff_dem)) %>% 
-  kable() %>% 
-  kable_styling(bootstrap_options = c("striped", "condensed"), 
-                full_width = F,
-                position = "left")
-
-```
-
-
-
-And in fact 33 is also the number of precincts Democrats carried in 2018. This time? Not so much.
+And in fact 33 is also the number of precincts Democrats won in 2018. This time? Not so much.
 
 ```{r echo=FALSE}
 
@@ -144,7 +215,7 @@ robeson %>%
 
 ```
 
-Here's what that looks like in terms of number of votes in those precincts - 2018 compared to 2019
+Here's what that looks like in terms of number of votes in those precincts. 2018 compared to 2019.
 ```{r echo=FALSE}
 
 robeson %>% 
@@ -177,7 +248,7 @@ robeson %>%
 
 Democrats only had five precincts in Robeson with higher vote percentages than in November - and even those were low single digits.
 
-By contrast, the losses were big and widespread. In 11 precincts, Democrats had double-digit losses in pct points compared with 2018 -- representing a loss of more than 2,000 votes since the midterms. (All but one of those precincts flipped from blue to red.)
+By contrast, the losses were big and widespread. In 11 precincts, Democrats had double-digit losses in pct points compared with 2018 -- representing a loss of *more than 2,000 votes* since the midterms in just those precincts alone. (All but one of those precincts flipped from blue to red.)
 ```{r echo=FALSE}
 
 robeson %>% 
@@ -195,7 +266,7 @@ robeson %>%
 
 ```
 
-Biggest Republican wins in Robeson, and point growth from last time
+Conversly, here are the biggest Republican wins in Robeson, and point growth from last time
 ```{r echo=FALSE}
 
 robeson %>% 
@@ -214,65 +285,20 @@ robeson %>%
 ```
 
 
-### Did each party's pct of vote go up or down since Nov?
-
-Democratic
+There's even a more devastating way to look at Democratic performance in Robseon.  
+That is to look at the net loss of votes for Democrats on Tues vs. November -- in other words, precinct by precinct, what was the vote spread between Dem and Rep votes back in November...and then what was the vote spread on Tuesday.  
+  
+When you look at the difference between those tallies, the net loss in Democratic advantage was staggering.  Democrats may have "won" Robeson County on Tues, but they lost the spread difference by more than 4,000 votes.
 ```{r echo=FALSE}
 
-joined %>% 
-  count(dem_updown) %>% 
-  arrange(desc(n)) %>% 
+robeson %>% 
+  summarise(sum(votespread_GAINdiff_dem)) %>% 
   kable() %>% 
   kable_styling(bootstrap_options = c("striped", "condensed"), 
                 full_width = F,
                 position = "left")
 
 ```
-
-
-Republican
-```{r echo=FALSE}
-
-joined %>% 
-  count(gop_updown) %>% 
-  arrange(desc(n)) %>% 
-  kable() %>% 
-  kable_styling(bootstrap_options = c("striped", "condensed"), 
-                full_width = F,
-                position = "left")
-
-```
-
-
-Where did Democratic percent of the vote fall from Nov
-```{r echo=FALSE}
-
-joined %>% 
-  count(dem_updown, county) %>% 
-  filter(dem_updown == "down") %>% 
-  arrange(desc(n)) %>% 
-  kable() %>% 
-  kable_styling(bootstrap_options = c("striped", "condensed"), 
-                full_width = F,
-                position = "left")
-
-```
-
-Where did Republican percent of the vote fall from Nov
-```{r echo=FALSE}
-
-joined %>% 
-  count(gop_updown, county) %>% 
-  filter(gop_updown == "down") %>% 
-  arrange(desc(n)) %>% 
-  kable() %>% 
-  kable_styling(bootstrap_options = c("striped", "condensed"), 
-                full_width = F,
-                position = "left")
-
-```
-
-
 
 
 

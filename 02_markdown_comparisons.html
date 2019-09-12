@@ -374,14 +374,296 @@ summary {
 
 <h1 class="title toc-ignore">NC-09 precinct-level comparisons</h1>
 <h4 class="author">Aaron Kessler</h4>
-<h4 class="date">9/11/2019</h4>
+<h4 class="date">9/12/2019</h4>
 
 </div>
 
 
-<div id="breakdowns-by-flips" class="section level3">
-<h3>Breakdowns by Flips</h3>
-Total flipped precincts on Tues night
+<div id="lets-start-out-with-turnout-how-many-precincts-saw-more-votes-for-each-party-in-the-special-compared-with-the-original-midterms-in-november.-how-many-saw-less" class="section level3">
+<h3>Let’s start out with turnout: How many precincts saw more votes for each party in the special compared with the original midterms in November. How many saw less?</h3>
+Democrats: Nearly every precinct saw votes <em>fall</em> from November
+<table class="table table-striped table-condensed" style="width: auto !important; ">
+<thead>
+<tr>
+<th style="text-align:left;">
+dem_updown_votes
+</th>
+<th style="text-align:right;">
+n
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+down
+</td>
+<td style="text-align:right;">
+192
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:right;">
+18
+</td>
+</tr>
+</tbody>
+</table>
+<p>The same was true for Republicans.</p>
+<table class="table table-striped table-condensed" style="width: auto !important; ">
+<thead>
+<tr>
+<th style="text-align:left;">
+gop_updown_votes
+</th>
+<th style="text-align:right;">
+n
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+down
+</td>
+<td style="text-align:right;">
+189
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:right;">
+20
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+no change
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+<p>So we know this was a low-turnout election broadly and people who came out in their precincts in November didn’t show up this time.</p>
+</div>
+<div id="now-lets-look-at-each-partys-percent-of-the-vote-in-each-precinct" class="section level3">
+<h3>Now let’s look at each party’s <strong>percent</strong> of the vote in each precinct</h3>
+<div id="did-tuesdays-margins-go-up-or-down-since-nov" class="section level4">
+<h4>Did Tuesday’s margins go up or down since Nov?</h4>
+Democratic
+<table class="table table-striped table-condensed" style="width: auto !important; ">
+<thead>
+<tr>
+<th style="text-align:left;">
+dem_updown
+</th>
+<th style="text-align:right;">
+n
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:right;">
+109
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+down
+</td>
+<td style="text-align:right;">
+98
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+no change
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+</tbody>
+</table>
+Republican
+<table class="table table-striped table-condensed" style="width: auto !important; ">
+<thead>
+<tr>
+<th style="text-align:left;">
+gop_updown
+</th>
+<th style="text-align:right;">
+n
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:right;">
+123
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+down
+</td>
+<td style="text-align:right;">
+83
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+no change
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+</tbody>
+</table>
+<p>So we can see Republicans did significantly better. Even though turnout overall was lower, the Republican voters showed up more often at the precinct level, allowing the party to boost its margins this time.</p>
+</div>
+<div id="where-did-democratic-percent-of-the-vote-fall-from-nov" class="section level4">
+<h4>Where did Democratic percent of the vote fall from Nov?</h4>
+Let’s see which counties had the largest number of precincts with lower Democratic margins this time compared with November’s midterms
+<table class="table table-striped table-condensed" style="width: auto !important; ">
+<thead>
+<tr>
+<th style="text-align:left;">
+dem_updown
+</th>
+<th style="text-align:left;">
+county
+</th>
+<th style="text-align:right;">
+n
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+down
+</td>
+<td style="text-align:left;">
+ROBESON
+</td>
+<td style="text-align:right;">
+33
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+down
+</td>
+<td style="text-align:left;">
+UNION
+</td>
+<td style="text-align:right;">
+20
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+down
+</td>
+<td style="text-align:left;">
+RICHMOND
+</td>
+<td style="text-align:right;">
+14
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+down
+</td>
+<td style="text-align:left;">
+SCOTLAND
+</td>
+<td style="text-align:right;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+down
+</td>
+<td style="text-align:left;">
+BLADEN
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+down
+</td>
+<td style="text-align:left;">
+ANSON
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+down
+</td>
+<td style="text-align:left;">
+CUMBERLAND
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+down
+</td>
+<td style="text-align:left;">
+MECKLENBURG
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+</tbody>
+</table>
+<p>It’s clear that Robeson County plays a key role in the Democratic struggles on Tues night. That much was known quite quickly, though let’s dive in a little deeper now and see what the precincts tell us.</p>
+<!-- Where did Republican percent of the vote fall from Nov -->
+<!-- ```{r echo=FALSE} -->
+<!-- joined %>%  -->
+<!--   count(gop_updown, county) %>%  -->
+<!--   filter(gop_updown == "down") %>%  -->
+<!--   arrange(desc(n)) %>%  -->
+<!--   kable() %>%  -->
+<!--   kable_styling(bootstrap_options = c("striped", "condensed"),  -->
+<!--                 full_width = F, -->
+<!--                 position = "left") -->
+<!-- ``` -->
+</div>
+</div>
+<div id="precincts-that-flipped-parties-on-tuesday" class="section level3">
+<h3>Precincts that flipped parties on Tuesday</h3>
+<div id="lets-see-if-robeson-features-prominently-or-not-among-precincts-that-flipped-from-blue-to-red-or-vice-versa." class="section level4">
+<h4>Let’s see if Robeson features prominently or not among precincts that flipped from blue to red, or vice versa.</h4>
+Total flipped precincts on Tues night show us there were 27 such precincts district-wide.
 <table class="table table-striped table-condensed" style="width: auto !important; ">
 <thead>
 <tr>
@@ -412,7 +694,7 @@ Y
 </tr>
 </tbody>
 </table>
-Looking by party, Republicans owned the night for flips
+Looking by party, it’s clear Republicans owned the night for flips
 <table class="table table-striped table-condensed" style="width: auto !important; ">
 <thead>
 <tr>
@@ -452,7 +734,13 @@ D
 </tr>
 </tbody>
 </table>
-Which counties had most flips by party? Republicans flipped a huge chunk (15!) in <strong>Robeson County</strong>
+<p>So now we also know that Republicans were much more successful on Tuesday night in flipping precincts.<br />
+This matches up with our previous breakdowns above showing how Republicans gained greater shares of the vote in more precincts than Democrats.<br />
+Now we know they were <em>also better a flipping them altogether</em> and winning precincts Democrats had carried in November.</p>
+</div>
+<div id="so-which-counties-had-most-flips-by-party" class="section level4">
+<h4>So which <em>counties</em> had most flips by party?</h4>
+Republicans flipped a huge chunk (15!) in <strong>Robeson County</strong>
 <table class="table table-striped table-condensed" style="width: auto !important; ">
 <thead>
 <tr>
@@ -586,38 +874,9 @@ CUMBERLAND
 </tbody>
 </table>
 </div>
-<div id="diving-into-robeson-county" class="section level3">
-<h3>Diving into Robeson County</h3>
-Robeson County flips were entirely Republican
-<table class="table table-striped table-condensed" style="width: auto !important; ">
-<thead>
-<tr>
-<th style="text-align:left;">
-flip
-</th>
-<th style="text-align:left;">
-winner19
-</th>
-<th style="text-align:right;">
-n
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-R
-</td>
-<td style="text-align:right;">
-15
-</td>
-</tr>
-</tbody>
-</table>
-Democrats lost vote share in nearly every Robeson precinct compared with 2018. The table below shows the number of precincts the Dem share went up or down.
+<div id="diving-deeper-into-robeson-county-how-the-dems-lost-ground-and-why-it-was-so-devastating-for-tuesdays-results" class="section level4">
+<h4>Diving deeper into Robeson County: How the Dems lost ground and why it was so devastating for Tuesday’s results</h4>
+Democrats lost vote share in nearly every Robeson precinct compared with 2018. The table below shows the number of precincts the Dem share went up or down in <em>just Robeson</em>.
 <table class="table table-striped table-condensed" style="width: auto !important; ">
 <thead>
 <tr>
@@ -648,24 +907,7 @@ up
 </tr>
 </tbody>
 </table>
-The net loss in votes for Democrats from November was more than 4,000
-<table class="table table-striped table-condensed" style="width: auto !important; ">
-<thead>
-<tr>
-<th style="text-align:right;">
-sum(votespread_GAINdiff_dem)
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:right;">
--4497
-</td>
-</tr>
-</tbody>
-</table>
-<p>And in fact 33 is also the number of precincts Democrats carried in 2018. This time? Not so much.</p>
+<p>And in fact 33 is also the number of precincts Democrats won in 2018. This time? Not so much.</p>
 <table class="table table-striped table-condensed" style="width: auto !important; ">
 <thead>
 <tr>
@@ -726,7 +968,7 @@ R
 </tr>
 </tbody>
 </table>
-Here’s what that looks like in terms of number of votes in those precincts - 2018 compared to 2019
+Here’s what that looks like in terms of number of votes in those precincts. 2018 compared to 2019.
 <table class="table table-striped table-condensed" style="width: auto !important; ">
 <thead>
 <tr>
@@ -842,7 +1084,7 @@ R
 </tbody>
 </table>
 <p>Democrats only had five precincts in Robeson with higher vote percentages than in November - and even those were low single digits.</p>
-By contrast, the losses were big and widespread. In 11 precincts, Democrats had double-digit losses in pct points compared with 2018 – representing a loss of more than 2,000 votes since the midterms. (All but one of those precincts flipped from blue to red.)
+By contrast, the losses were big and widespread. In 11 precincts, Democrats had double-digit losses in pct points compared with 2018 – representing a loss of <em>more than 2,000 votes</em> since the midterms in just those precincts alone. (All but one of those precincts flipped from blue to red.)
 <table class="table table-striped table-condensed" style="width: auto !important; ">
 <thead>
 <tr>
@@ -1053,7 +1295,7 @@ N
 </tr>
 </tbody>
 </table>
-Biggest Republican wins in Robeson, and point growth from last time
+Conversly, here are the biggest Republican wins in Robeson, and point growth from last time
 <table class="table table-striped table-condensed" style="width: auto !important; ">
 <thead>
 <tr>
@@ -1247,277 +1489,26 @@ ROBESON
 </tr>
 </tbody>
 </table>
+<p>There’s even a more devastating way to look at Democratic performance in Robseon.<br />
+That is to look at the net loss of votes for Democrats on Tues vs. November – in other words, precinct by precinct, what was the vote spread between Dem and Rep votes back in November…and then what was the vote spread on Tuesday.</p>
+When you look at the difference between those tallies, the net loss in Democratic advantage was staggering. Democrats may have “won” Robeson County on Tues, but they lost the spread difference by more than 4,000 votes.
+<table class="table table-striped table-condensed" style="width: auto !important; ">
+<thead>
+<tr>
+<th style="text-align:right;">
+sum(votespread_GAINdiff_dem)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+-4497
+</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="did-each-partys-pct-of-vote-go-up-or-down-since-nov" class="section level3">
-<h3>Did each party’s pct of vote go up or down since Nov?</h3>
-Democratic
-<table class="table table-striped table-condensed" style="width: auto !important; ">
-<thead>
-<tr>
-<th style="text-align:left;">
-dem_updown
-</th>
-<th style="text-align:right;">
-n
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-up
-</td>
-<td style="text-align:right;">
-109
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-down
-</td>
-<td style="text-align:right;">
-98
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:right;">
-3
-</td>
-</tr>
-</tbody>
-</table>
-Republican
-<table class="table table-striped table-condensed" style="width: auto !important; ">
-<thead>
-<tr>
-<th style="text-align:left;">
-gop_updown
-</th>
-<th style="text-align:right;">
-n
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-up
-</td>
-<td style="text-align:right;">
-123
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-down
-</td>
-<td style="text-align:right;">
-83
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:right;">
-4
-</td>
-</tr>
-</tbody>
-</table>
-Where did Democratic percent of the vote fall from Nov
-<table class="table table-striped table-condensed" style="width: auto !important; ">
-<thead>
-<tr>
-<th style="text-align:left;">
-dem_updown
-</th>
-<th style="text-align:left;">
-county
-</th>
-<th style="text-align:right;">
-n
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-down
-</td>
-<td style="text-align:left;">
-ROBESON
-</td>
-<td style="text-align:right;">
-33
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-down
-</td>
-<td style="text-align:left;">
-UNION
-</td>
-<td style="text-align:right;">
-20
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-down
-</td>
-<td style="text-align:left;">
-RICHMOND
-</td>
-<td style="text-align:right;">
-14
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-down
-</td>
-<td style="text-align:left;">
-SCOTLAND
-</td>
-<td style="text-align:right;">
-10
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-down
-</td>
-<td style="text-align:left;">
-BLADEN
-</td>
-<td style="text-align:right;">
-7
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-down
-</td>
-<td style="text-align:left;">
-ANSON
-</td>
-<td style="text-align:right;">
-6
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-down
-</td>
-<td style="text-align:left;">
-CUMBERLAND
-</td>
-<td style="text-align:right;">
-6
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-down
-</td>
-<td style="text-align:left;">
-MECKLENBURG
-</td>
-<td style="text-align:right;">
-2
-</td>
-</tr>
-</tbody>
-</table>
-Where did Republican percent of the vote fall from Nov
-<table class="table table-striped table-condensed" style="width: auto !important; ">
-<thead>
-<tr>
-<th style="text-align:left;">
-gop_updown
-</th>
-<th style="text-align:left;">
-county
-</th>
-<th style="text-align:right;">
-n
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-down
-</td>
-<td style="text-align:left;">
-MECKLENBURG
-</td>
-<td style="text-align:right;">
-42
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-down
-</td>
-<td style="text-align:left;">
-UNION
-</td>
-<td style="text-align:right;">
-19
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-down
-</td>
-<td style="text-align:left;">
-CUMBERLAND
-</td>
-<td style="text-align:right;">
-13
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-down
-</td>
-<td style="text-align:left;">
-BLADEN
-</td>
-<td style="text-align:right;">
-5
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-down
-</td>
-<td style="text-align:left;">
-ROBESON
-</td>
-<td style="text-align:right;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-down
-</td>
-<td style="text-align:left;">
-ANSON
-</td>
-<td style="text-align:right;">
-1
-</td>
-</tr>
-</tbody>
-</table>
 </div>
 <div id="vote-spread-metrics" class="section level3">
 <h3>Vote-Spread Metrics</h3>
