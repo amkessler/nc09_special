@@ -14,7 +14,7 @@ library(lubridate)
 library(reshape2)
 library(writexl)
 library(kableExtra)
-library(gt)
+# library(gt)
 options(scipen = 999)
 
 
@@ -76,6 +76,142 @@ joined %>%
 
 ```
 
+
+
+### Diving into Robeson County
+
+Robeson County flips were entirely Republican
+```{r echo=FALSE}
+
+robeson %>% 
+  filter(flip == "Y") %>% 
+  count(flip, winner19) %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "condensed"), 
+                full_width = F,
+                position = "left")
+
+```
+
+
+Democrats lost vote share in nearly every Robeson precinct compared with 2018.
+The table below shows the number of precincts the Dem share went up or down.
+```{r echo=FALSE}
+
+robeson %>% 
+  count(dem_updown) %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "condensed"), 
+                full_width = F,
+                position = "left")
+
+```
+
+
+The net loss in votes for Democrats from November was more than 4,000
+```{r echo=FALSE}
+
+robeson %>% 
+  summarise(sum(votespread_GAINdiff_dem)) %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "condensed"), 
+                full_width = F,
+                position = "left")
+
+```
+
+
+
+And in fact 33 is also the number of precincts Democrats carried in 2018. This time? Not so much.
+
+```{r echo=FALSE}
+
+robeson %>% 
+  count(winner18) %>% 
+  kable() %>%
+  kable_styling(bootstrap_options = c("striped", "condensed"),
+                full_width = F,
+                position = "left")
+
+robeson %>% 
+  count(winner19) %>% 
+  kable() %>%
+  kable_styling(bootstrap_options = c("striped", "condensed"),
+                full_width = F,
+                position = "left")
+
+
+
+```
+
+Here's what that looks like in terms of number of votes in those precincts - 2018 compared to 2019
+```{r echo=FALSE}
+
+robeson %>% 
+  group_by(winner18) %>% 
+  summarise(n(), demvotes = sum(dem18), gopvotes = sum(gop18)) %>% 
+  mutate(
+    difference = demvotes - gopvotes
+  ) %>% 
+  kable() %>%
+  kable_styling(bootstrap_options = c("striped", "condensed"),
+                full_width = F,
+                position = "left")
+
+
+
+robeson %>% 
+  group_by(winner19) %>% 
+  summarise(n(), demvotes = sum(dem19), gopvotes = sum(gop19)) %>% 
+  mutate(
+    difference = demvotes - gopvotes
+  ) %>% 
+  kable() %>%
+  kable_styling(bootstrap_options = c("striped", "condensed"),
+                full_width = F,
+                position = "left")
+
+
+```
+
+
+Democrats only had five precincts in Robeson with higher vote percentages than in November - and even those were low single digits.
+
+By contrast, the losses were big and widespread. In 11 precincts, Democrats had double-digit losses in pct points compared with 2018 -- representing a loss of more than 2,000 votes since the midterms. (All but one of those precincts flipped from blue to red.)
+```{r echo=FALSE}
+
+robeson %>% 
+  select(county, precinct, dem_change, dem_vote_change, flip) %>% 
+  arrange(dem_change) %>% 
+  head(11) %>% 
+  kable() %>%
+  kable_styling(bootstrap_options = c("striped", "condensed"),
+                full_width = F,
+                position = "left") %>% 
+  column_spec(3, bold = T)
+
+
+
+
+```
+
+Biggest Republican wins in Robeson, and point growth from last time
+```{r echo=FALSE}
+
+robeson %>% 
+  select(county, precinct, gop18pct, gop19pct) %>% 
+  arrange(desc(gop19pct)) %>% 
+  mutate(
+    point_boost = gop19pct - gop18pct
+  ) %>% 
+  head(10) %>%
+  kable() %>%
+  kable_styling(bootstrap_options = c("striped", "condensed"),
+                full_width = F,
+                position = "left") %>%
+  column_spec(4, bold = T)
+
+```
 
 
 ### Did each party's pct of vote go up or down since Nov?
@@ -178,36 +314,4 @@ joined %>%
 
 ```
 
-
-
-## Diving into Robeson County
-
-
-### asdfasdf
-
-Robeson County flips were entirely Republican
-```{r echo=FALSE}
-
-robeson %>% 
-  filter(flip == "Y") %>% 
-  count(flip, winner19) %>% 
-  kable() %>% 
-  kable_styling(bootstrap_options = c("striped", "condensed"), 
-                full_width = F,
-                position = "left")
-
-```
-
-
-Democrats lost vote share in nearly every Robeson precinct compared with 2018 
-```{r echo=FALSE}
-
-robeson %>% 
-  count(dem_updown) %>% 
-  kable() %>% 
-  kable_styling(bootstrap_options = c("striped", "condensed"), 
-                full_width = F,
-                position = "left")
-
-```
 
